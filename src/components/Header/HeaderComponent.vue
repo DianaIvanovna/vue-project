@@ -1,7 +1,7 @@
 <template>
   <header class="header">
     <router-link to="/" class="header__link">Главная</router-link> |
-    <router-link to="/about" class="header__link">Товары</router-link> |
+    <router-link to="/products" class="header__link">Товары</router-link> |
     <router-link to="/blog" class="header__link">Блог</router-link>
 
   </header>

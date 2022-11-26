@@ -34,7 +34,12 @@ export default {
 .article {
   width: 100%;
   height: 100%;
+  min-height: 276px;
 
+}
+
+.article-mini.article{
+  min-height: auto;
 }
 .article-mini .article__description {
 display: none;
@@ -49,6 +54,7 @@ margin-top: 5px;
   height: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   padding: 10px;
   box-sizing: border-box;
   background: linear-gradient(90deg,rgba(0, 0, 0, 0.41) 1.85%, rgba(0, 0, 0, 0.369328) 64.68%  );
@@ -60,7 +66,7 @@ margin-top: 5px;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 6;
 }
 
 .article__title {

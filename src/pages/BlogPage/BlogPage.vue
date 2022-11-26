@@ -1,6 +1,7 @@
 <template>
   <div class="blog__header">
     <h1>Страница блога</h1>
+    <SearchInput :posts='newPosts' :inputHandler='inputHandler'/>
     <div class="blog__buttons">
       <button
         class="blog__button"
@@ -12,45 +13,56 @@
         :class="{ 'blog__button_active': typeView=='mini' }"
         @click="btnHandler('mini')"
       >Список</button>
+
     </div>
-  </div>
-
-  <div
-  class="article-list"
-  :class="{ 'article-list-column': typeView=='card' }"
-  >
-  <div
-  v-for="post in posts"
-        :key="post.id"
-
-  >
-
-  <ArticleItem :post="post" :typeView="this.typeView"/>
 
   </div>
 
-  </div>
+    <div
+    class="article-list"
+    :class="{ 'article-list-column': typeView=='card' }"
+    >
+      <div
+      v-for="post in newPosts"
+            :key="post.id"
+
+      >
+      <ArticleItem :post="post" :typeView="this.typeView"/>
+      </div>
+
+    </div>
 
 </template>
 
 <script>
+import SearchInput from '../../components/SearchInput/SearchInput.vue';
 import articles from '../../dataset/articles';
 import ArticleItem from '../../components/ArticleItem/ArticleItem.vue';
 
 export default {
-  components: { ArticleItem },
+  components: { ArticleItem, SearchInput },
   data() {
     return {
       posts: [],
+      newPosts: [],
       typeView: 'card',
     };
   },
   created() {
     this.posts = articles;
+    this.newPosts = this.posts;
   },
   methods: {
     btnHandler(type) {
       this.typeView = type;
+    },
+    inputHandler(event) {
+      const searchValue = event.target.value;
+      if (!searchValue) {
+        this.newPosts = this.posts;
+        return;
+      }
+      this.newPosts = this.posts.filter((item) => item.title.split(' ').join('').toLowerCase().includes(searchValue.split(' ').join('').toLowerCase()));
     },
   },
 };

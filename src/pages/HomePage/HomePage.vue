@@ -1,13 +1,19 @@
 <template>
   <h1>Главная страница</h1>
+
   <p>
     {{ returnText() }}
+    <button @click="btnHandler" class="button"> {{visibleText? "Скрыть": "Показать"}}</button>
   </p>
-  <button @click="btnHandler"> {{visibleText? "Скрыть": "Показать"}}</button>
+
+  <EditableText />
 </template>
 
 <script>
+import EditableText from '../../components/EditableText/EditableText.vue';
+
 export default {
+  components: { EditableText },
   data() {
     return {
       visibleText: false,
@@ -29,6 +35,14 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+  .button {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    cursor: pointer;
+    padding: 0;
+    color: #42b983;
+  }
 
 </style>
